@@ -4,7 +4,7 @@ class UserController extends AppController {
 	var $name = 'User';
 	var $uses = array('User', 'Rule', 'Group');
 	var $components = array('Email','Authake','Session');
-
+var $layout = 'authake';
     function denied(){
       // display this view (/app/views/users/denied.ctp) when the user is denied
     }

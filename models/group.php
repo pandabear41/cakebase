@@ -1,55 +1,50 @@
 <?php
+/*
+This file is part of Authake.
+
+Author: Jérôme Combaz (jakecake/velay.greta.fr)
+Contributors:
+
+Authake is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Authake is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Foobar. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
 class Group extends AppModel {
-	var $name = 'Group';
-	var $displayField = 'name';
-	var $validate = array(
-		'name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+  var $name = 'Group';
+  var $useTable = "groups";
+  var $hasMany = array(
+        'Rule' => array(
+          'className' => 'Rule',
+          'exclusive' => false,
+          'dependent' => false,
+          'foreignKey' => 'group_id',
+          'order' => 'Rule.order ASC'
+        )
+      );
 
-	var $hasMany = array(
-		'Rule' => array(
-			'className' => 'Rule',
-			'foreignKey' => 'group_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
+  var $hasAndBelongsToMany = array(
+        'User' => array(
+          'className' => 'User',
+          'joinTable' => 'groups_users',
+          'foreignKey' => 'group_id',
+          'associationForeignKey'=> 'user_id',
+          'order' => 'User.id',
+          'displayField' => 'login'
+        )
+      );
 
 
-	var $hasAndBelongsToMany = array(
-		'User' => array(
-			'className' => 'User',
-			'joinTable' => 'groups_users',
-			'foreignKey' => 'group_id',
-			'associationForeignKey' => 'user_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
 
 }
 ?>

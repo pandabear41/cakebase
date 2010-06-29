@@ -8,7 +8,7 @@ class GroupsController extends AppController {
 			'Group.id' => 'asc'
 		)
 	);
-
+	var $layout = 'authake';
 	var $uses = array('Group', 'Rule');
    
 

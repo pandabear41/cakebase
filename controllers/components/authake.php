@@ -212,7 +212,7 @@ class AuthakeComponent extends Object {
         //|| ($cacheRules = $this->Session->read('Authake.cacheRules')) === null
         || $cacheRules = null === null
             ) {
-            App::import("Model", "Authake.Rule");
+            App::import("Model", "Rule");
             $rule = new Rule;
             $cacheRules = $rule->getRules(is_array($group_ids) ? $group_ids : $this->getGroupIds(), true); // use groups provided or take groups of the users
 

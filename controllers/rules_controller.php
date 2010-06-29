@@ -3,7 +3,7 @@ class RulesController extends AppController {
 
 	var $name = 'Rules';
 	var $uses = array('Rule');
-
+var $layout = 'authake';
 function index($tableonly = false) {
         $this->Rule->recursive = 0;
         $this->set('rules', $this->Rule->find('all'));

@@ -32,7 +32,7 @@
  */
 class AppController extends Controller {
     var $helpers = array('Time', 'Htmlbis');
-    var $components = array('DebugKit.Toolbar');
+    var $components = array('DebugKit.Toolbar','Session','Authake');
 
     function __makePassword($password1, $password2) {
         if ($password1 != $password2) {
@@ -41,4 +41,13 @@ class AppController extends Controller {
         }
         return md5($password1);
     }
+
+    function beforeFilter() { //pr($this);
+
+        $this->Authake->beforeFilter($this);
+
+        return true;
+    } // end beforeFilter()
+
+
 }

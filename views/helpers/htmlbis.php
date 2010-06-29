@@ -25,15 +25,15 @@ App::import('Helper', 'Html');
 class HtmlbisHelper extends HtmlHelper {
         
     function iconlink($icon, $title, $url = null, $htmlAttributes = array(), $confirmMessage = false) {
-        $img = parent::image("/authake/img/icons/{$icon}.png", array('title' => $title));
+        $img = parent::image("/webroot/img/icons/{$icon}.png", array('title' => $title));
         return parent::link($img, $url, am($htmlAttributes, array('escape'=>false)), $confirmMessage, false);
     }
     
     function iconallowdeny($what) {
         if ($what == 'Allow')
-            echo $this->image("/authake/img/icons/accept.png", array('title' => __('Allow', true)));
+            echo $this->image("/webroot/img/icons/accept.png", array('title' => __('Allow', true)));
         else
-            echo $this->image("/authake/img/icons/delete.png", array('title' => __('Deny', true)));
+            echo $this->image("/webroot/img/icons/delete.png", array('title' => __('Deny', true)));
     }
 }
 ?>

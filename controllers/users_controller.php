@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $uses     = array('User', 'Rule');
 	var $components = array('Filter','Authake','Session');
-
+var $layout = 'authake';
   	var $paginate = array(
        	'limit' => 30,
               'order' => array(
