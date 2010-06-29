@@ -31,7 +31,7 @@
  * @subpackage    cake.app
  */
 class AppController extends Controller {
-    var $helpers = array('Time', 'Htmlbis');
+    var $helpers = array('Time', 'Htmlbis','Menu');
     var $components = array('DebugKit.Toolbar','Session','Authake');
 
     function __makePassword($password1, $password2) {
@@ -43,7 +43,13 @@ class AppController extends Controller {
     }
 
     function beforeFilter() { //pr($this);
-
+	 if ($this->Authake->isLogged()){ // Checking for the SESSION - Proceed only if MEMBER/USER is logged in.
+                $this->loadModel('User'); // Loading MEMBER Model
+                
+                // UPDATE MEMBER VISIT TIME
+                $last_visit = date('Y-m-d H:i:s', time());
+                $this->User->updateAll(array('User.lastvisit' => '"'.$last_visit.'"'), array('User.id' => $this->Authake->getUserId()));
+	 }
         $this->Authake->beforeFilter($this);
 
         return true;
