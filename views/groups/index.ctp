@@ -58,7 +58,6 @@ foreach ($groups as $group):
     </tr>
 </table>
 </div>
-
 <?php if (!$tableonly) { ?>
 <div class="actions">
 	<ul>

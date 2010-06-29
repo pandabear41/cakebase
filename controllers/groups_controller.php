@@ -3,10 +3,10 @@ class GroupsController extends AppController {
 
 	var $name = 'Groups';
 	var $paginate = array(
-		'limit' => 100000,
+		'limit' => 10000,
 		'order' => array(
 			'Group.id' => 'asc'
-		)
+		),
 	);
 	var $layout = 'authake';
 	var $uses = array('Group', 'Rule');
