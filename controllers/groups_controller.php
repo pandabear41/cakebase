@@ -8,7 +8,9 @@ class GroupsController extends AppController {
 			'Group.id' => 'asc'
 		)
 	);
+
 	var $uses = array('Group', 'Rule');
+   
 
 	function index($tableonly = false) {
 		$this->Group->recursive = 0;

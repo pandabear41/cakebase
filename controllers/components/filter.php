@@ -22,6 +22,7 @@ class FilterComponent extends Object {
                     "date"=>array("DATE_FORMAT(%1\$s, '%%d-%%m-%%Y')", "%2\$s"),
                     "datetime"=>array("DATE_FORMAT(%1\$s, '%%d-%%m-%%Y')", "%2\$s")
                     );
+
     /**
 * Function which will change controller->data array
 *

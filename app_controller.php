@@ -31,5 +31,14 @@
  * @subpackage    cake.app
  */
 class AppController extends Controller {
-var $components = array('DebugKit.Toolbar');
+    var $helpers = array('Time', 'Htmlbis');
+    var $components = array('DebugKit.Toolbar');
+
+    function __makePassword($password1, $password2) {
+        if ($password1 != $password2) {
+            $this->Session->setFlash(__('The two passwords do not match!', true), 'error');
+            return false;
+        }
+        return md5($password1);
+    }
 }
