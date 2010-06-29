@@ -13,22 +13,12 @@ class Group extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'level' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $hasMany = array(
-		'User' => array(
-			'className' => 'User',
+		'Rule' => array(
+			'className' => 'Rule',
 			'foreignKey' => 'group_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -44,11 +34,11 @@ class Group extends AppModel {
 
 
 	var $hasAndBelongsToMany = array(
-		'Permission' => array(
-			'className' => 'Permission',
-			'joinTable' => 'groups_permissions',
+		'User' => array(
+			'className' => 'User',
+			'joinTable' => 'groups_users',
 			'foreignKey' => 'group_id',
-			'associationForeignKey' => 'permission_id',
+			'associationForeignKey' => 'user_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
