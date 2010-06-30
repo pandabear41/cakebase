@@ -3,8 +3,16 @@ class UserController extends AppController {
 
 	var $name = 'User';
 	var $uses = array('User', 'Rule', 'Group');
-	var $components = array('Email','Authake','Session');
-var $layout = 'authake';
+
+
+	var $components = array('Email','Authake','Session','Recaptcha');
+
+//	var $helpers = array('Captcha');
+
+	var $layout = 'authake';
+
+
+
     function denied(){
       // display this view (/app/views/users/denied.ctp) when the user is denied
     }
@@ -132,7 +140,7 @@ var $layout = 'authake';
         if(Configure::read('Authake.registration') == false){
           $this->redirect('/');
         }
-        if (!empty($this->data)) {
+        if (!empty($this->data) && $this->Recaptcha->valid($this->params['form'])) {
             
             $this->User->recursive = 0;
             $exist = $this->User->findByLogin($this->data['User']['login']);
@@ -180,7 +188,7 @@ var $layout = 'authake';
                 } else {
                     $this->Session->setFlash(sprintf(__('Failed to send the confirmation email. Please contact the administrator at %s', true), Configure::read('Authake.systemReplyTo')), 'error');
                 }
-                $this->redirect('/login');
+                $this->redirect('login');
             } else {
                 $this->Session->setFlash(__('The registration failed!', true), 'error');
             }
@@ -342,7 +350,8 @@ var $layout = 'authake';
     
     function beforeFilter(){
       parent::beforeFilter();
-      
+       $this->Recaptcha->publickey = "6LcPMLsSAAAAAENHPtB2vHx7klL90UhaWPA2NZ7Q";
+   	$this->Recaptcha->privatekey = "6LcPMLsSAAAAAFghYcNeOPVXGa4jPwFF26RziqGs";
       //Overwriting the authake layout with the default one
       if(Configure::read('Authake.useDefaultLayout') == true){
         $this->layout = 'default';

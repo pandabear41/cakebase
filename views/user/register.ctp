@@ -9,8 +9,8 @@
     echo $form->input('login', array('label'=>__('Login', true), 'size'=>'12'));
     echo $form->input('email', array('label'=>__('Email', true), 'size'=>'40'));
     echo $form->input('password1', array('type'=>'password', 'label'=>__('Password', true), 'value' => '', 'size'=>'12'));
-    echo $form->input('password2', array('type'=>'password', 'label'=>__('Please, re-enter password', true), 'value' => '', 'size'=>'12'));
-        
+    echo $form->input('password2', array('type'=>'password', 'label'=>__('Please, re-enter password', true), 'value' => '', 'size'=>'12'));      
+    $recaptcha->display_form('echo'); 
     echo $form->end(__('Register', true));
 ?>
 	</fieldset>
